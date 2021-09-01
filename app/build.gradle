@@ -41,4 +41,5 @@ dependencies {
     implementation('com.naver.maps:map-sdk:3.12.0') {
         exclude group: 'com.android.support'
     }
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 }
