@@ -1,5 +1,6 @@
 package com.nalssam.barrierless.community;
 
+import android.view.View;
 import com.nalssam.barrierless.MainActivity;
 import com.nalssam.barrierless.R;
 import com.nalssam.barrierless.view.ViewState;
@@ -14,6 +15,9 @@ public class CommunityView implements ViewState {
 
     @Override
     public void onOpen(MainActivity mainActivity) {
+        //제보 버튼 활성화
+        mainActivity.findViewById(R.id.reportNew).setVisibility(View.VISIBLE);
+        mainActivity.findViewById(R.id.reportProblem).setVisibility(View.VISIBLE);
 
         //마커 테스트
         Marker marker = new Marker();
@@ -25,6 +29,10 @@ public class CommunityView implements ViewState {
 
     @Override
     public void onClose(MainActivity mainActivity) {
+        //제보 버튼 비활성화
+        mainActivity.findViewById(R.id.reportNew).setVisibility(View.GONE);
+        mainActivity.findViewById(R.id.reportProblem).setVisibility(View.GONE);
+
         for(Marker marker : this.markers) {
             marker.setMap(null);
         }

@@ -44,6 +44,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+    <ImageButton
+            android:id="@+id/reportNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_report_background"
+            android:src="@drawable/ic_bell_green"
+            app:layout_constraintBottom_toTopOf="@id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="23dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:visibility="gone" />
+
+    <ImageButton
+            android:id="@+id/reportProblem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_report_background"
+            android:src="@drawable/ic_bell_orange"
+            app:layout_constraintBottom_toTopOf="@id/reportNew"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="7dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:visibility="gone" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/aroundConstraint"
             android:orientation="vertical"
@@ -93,7 +119,6 @@
                 app:layout_constraintEnd_toEndOf="@id/around"
                 android:layout_marginTop="3dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/directionsConstraint"
             android:orientation="vertical"
@@ -144,7 +169,6 @@
                 app:layout_constraintEnd_toEndOf="@id/directions"
                 android:layout_marginTop="3dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/communityConstraint"
             android:orientation="vertical"
@@ -195,8 +219,6 @@
                 app:layout_constraintEnd_toEndOf="@id/community"
                 android:layout_marginTop="3dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/myConstraint"
             android:orientation="vertical"
@@ -246,6 +268,4 @@
                 app:layout_constraintEnd_toEndOf="@id/my"
                 android:layout_marginTop="3dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
