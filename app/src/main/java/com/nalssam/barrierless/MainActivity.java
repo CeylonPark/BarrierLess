@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private NaverMap naverMap;
+    private ViewController viewController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +34,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             fm.beginTransaction().add(R.id.map, mapFragment).commit();
         }
         mapFragment.getMapAsync(naverMap -> {
-            LocationButtonView zoomControlView = findViewById(R.id.location);
+            LocationButtonView zoomControlView = findViewById(R.id.mapLocationBtn);
             zoomControlView.setMap(naverMap);
         });
 
-        new ViewController(this);
+        this.viewController = new ViewController(this);
+        fm.beginTransaction().add(R.id.footerContainer, new FooterFragment(this.viewController)).commit();
     }
 
     @Override
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         UiSettings uiSettings = naverMap.getUiSettings();
         uiSettings.setCompassEnabled(false);
         uiSettings.setLogoClickEnabled(false);
+
+        this.viewController.changeView(ViewController.AROUND);
     }
 
     public NaverMap getNaverMap() {
