@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="310dp"
+        android:layout_height="480dp"
+        android:background="#fff">
+        <ImageButton
+                android:id="@+id/reportCancelBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_cancel"
+                android:background="#fff"/>
+        <TextView
+                android:id="@+id/reportTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="18dp"
+                android:text="불편한 사람들 도와주기(제보하기)"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:textSize="16.5sp"
+                android:textColor="#2088ff" />
+
+        <EditText
+                android:id="@+id/reportContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/reportTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="63dp"
+                android:background="@drawable/report_content_background"
+                android:text="글쓰기"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:textSize="12sp"
+                android:textColor="#9f9f9f" />
+        <ImageButton
+                android:id="@+id/reportFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/reportContent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/report_file_background" />
+        <Button
+                android:id="@+id/reportBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/reportFile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_report"
+                android:text="제보하기"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:textSize="14sp"
+                android:textColor="#fff" />
+</androidx.constraintlayout.widget.ConstraintLayout>
