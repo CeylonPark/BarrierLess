@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ic_launcher_background">#fff</color>
+    <color name="main_blue">#2088ff</color>
 
+    <color name="bell_grean">#02ca00</color>
+    <color name="bell_orange">#ffa000</color>
+
+    <color name="gray">#777</color>
     <color name="white">#fff</color>
 </resources>

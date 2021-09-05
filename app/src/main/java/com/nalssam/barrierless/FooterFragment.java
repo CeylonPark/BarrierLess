@@ -5,30 +5,34 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.nalssam.barrierless.view.ViewController;
+import androidx.fragment.app.FragmentManager;
 
 public class FooterFragment extends Fragment {
-    private final ViewController viewController;
-    private MainActivity mainActivity;
+    public static final int LOCATION = 0;
+    public static final int NAVIGATION = 1;
+    public static final int COMMUNITY = 2;
+    public static final int MY = 3;
 
-    public FooterFragment(ViewController viewController) {
-        this.viewController = viewController;
-    }
+    private MainActivity mainActivity;
+    private FragmentManager fragmentManager;
+    private FooterElementFragment elementFragment;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.mainActivity = (MainActivity) this.getActivity();
+        assert this.mainActivity != null;
+        this.fragmentManager = this.mainActivity.getSupportFragmentManager();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         this.mainActivity = null;
+        this.fragmentManager = null;
     }
 
     @Nullable
@@ -36,18 +40,33 @@ public class FooterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_footer, container, false);
 
-        Button aroundBtn = viewGroup.findViewById(R.id.aroundBtn);
-        aroundBtn.setOnClickListener(view -> this.viewController.changeView(ViewController.AROUND));
+        // 주변
+        FooterElementFragment locationElementFragment = new FooterElementFragment(FooterFragment.LOCATION, this);
+        this.fragmentManager.beginTransaction().add(R.id.locationContainer,
+                locationElementFragment).runOnCommit(() -> this.elementFragment.onSwitch()).commit();
+        this.elementFragment = locationElementFragment;
 
-        Button directions = viewGroup.findViewById(R.id.directionsBtn);
-        directions.setOnClickListener(view -> this.viewController.changeView(ViewController.DIRECTIONS));
+        // 길찾기
+        this.fragmentManager.beginTransaction().add(R.id.navigationContainer,
+                new FooterElementFragment(FooterFragment.NAVIGATION, this)).commit();
 
-        Button communityBtn = viewGroup.findViewById(R.id.communityBtn);
-        communityBtn.setOnClickListener(view -> this.viewController.changeView(ViewController.COMMUNITY));
+        // 커뮤니티 매핑
+        this.fragmentManager.beginTransaction().add(R.id.communityContainer,
+                new FooterElementFragment(FooterFragment.COMMUNITY, this)).commit();
 
-        Button myBtn = viewGroup.findViewById(R.id.myBtn);
-        myBtn.setOnClickListener(view -> this.viewController.changeView(ViewController.MY));
+        // MY
+        this.fragmentManager.beginTransaction().add(R.id.myContainer,
+                new FooterElementFragment(FooterFragment.MY, this)).commit();
 
         return viewGroup;
     }
+
+    public void switchFragment(FooterElementFragment elementFragment) {
+        if(elementFragment.getType() != this.elementFragment.getType()) {
+            this.elementFragment.onSwitch();
+            elementFragment.onSwitch();
+            this.elementFragment = elementFragment;
+        }
+    }
 }
+

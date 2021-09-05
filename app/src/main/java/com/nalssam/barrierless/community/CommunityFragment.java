@@ -1,12 +1,17 @@
 package com.nalssam.barrierless.community;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageButton;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import com.nalssam.barrierless.MainActivity;
 import com.nalssam.barrierless.R;
-import com.nalssam.barrierless.view.ViewState;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.MarkerIcons;
@@ -14,12 +19,11 @@ import com.naver.maps.map.util.MarkerIcons;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommunityView implements ViewState {
-    private static final int ADD = 0;
-    private static final int PROBLEM = 1;
+public class CommunityFragment extends Fragment {
     private final List<Marker> markers = new ArrayList<>();
+    private MainActivity mainActivity;
 
-    private void onClickReport(MainActivity mainActivity, int type) {
+    private void onClickReport() {
         Intent intent = new Intent(mainActivity, CommunityActivity.class);
         intent.putExtra("data", "Test Popup");
 
@@ -27,15 +31,9 @@ public class CommunityView implements ViewState {
     }
 
     @Override
-    public void onOpen(MainActivity mainActivity) {
-        //제보 버튼 활성화
-        ImageButton reportNewBtn = mainActivity.findViewById(R.id.reportNew);
-        reportNewBtn.setVisibility(View.VISIBLE);
-        reportNewBtn.setOnClickListener(view -> onClickReport(mainActivity, CommunityView.ADD));
-
-        ImageButton reportProblemBtn = mainActivity.findViewById(R.id.reportProblem);
-        reportProblemBtn.setVisibility(View.VISIBLE);
-        reportProblemBtn.setOnClickListener(view -> onClickReport(mainActivity, CommunityView.PROBLEM));
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.mainActivity = (MainActivity) this.getActivity();
 
         //마커 테스트
         Marker marker = new Marker();
@@ -71,15 +69,9 @@ public class CommunityView implements ViewState {
     }
 
     @Override
-    public void onClose(MainActivity mainActivity) {
-        //제보 버튼 비활성화
-        mainActivity.findViewById(R.id.reportNew).setVisibility(View.GONE);
-        mainActivity.findViewById(R.id.reportProblem).setVisibility(View.GONE);
-
-        ImageView imageView = mainActivity.findViewById(R.id.communityTest);
-        if(imageView.getVisibility() == View.VISIBLE) {
-            imageView.setVisibility(View.GONE);
-        }
+    public void onDetach() {
+        super.onDetach();
+        this.mainActivity = null;
 
         for(Marker marker : this.markers) {
             marker.setMap(null);
@@ -87,23 +79,16 @@ public class CommunityView implements ViewState {
         this.markers.clear();
     }
 
+    @Nullable
     @Override
-    public int getTopBarId() {
-        return R.id.communityTopBar;
-    }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_community, container, false);
 
-    @Override
-    public int getIconId() {
-        return R.id.community;
-    }
+        //제보 버튼 활성화
+        viewGroup.findViewById(R.id.reportNew).setOnClickListener(view -> onClickReport());
+        viewGroup.findViewById(R.id.reportProblem).setOnClickListener(view -> onClickReport());
 
-    @Override
-    public int getReplaceIconId(boolean color) {
-        return color ? R.drawable.ic_community_blue : R.drawable.ic_community_gray;
-    }
-
-    @Override
-    public int getTextId() {
-        return R.id.communityText;
+        return viewGroup;
     }
 }
+

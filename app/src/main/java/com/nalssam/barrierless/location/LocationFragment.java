@@ -1,9 +1,15 @@
-package com.nalssam.barrierless.around;
+package com.nalssam.barrierless.location;
 
-import com.nalssam.barrierless.LocationFragment;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import com.nalssam.barrierless.MainActivity;
 import com.nalssam.barrierless.R;
-import com.nalssam.barrierless.view.ViewState;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
@@ -11,12 +17,15 @@ import com.naver.maps.map.util.MarkerIcons;
 
 import java.util.*;
 
-public class AroundView implements ViewState {
-    private LocationFragment locationFragment;
-
+public class LocationFragment extends Fragment {
     private final List<Marker> markerList = new ArrayList<>();
+    private MainActivity mainActivity;
 
-    public AroundView() {
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.mainActivity = (MainActivity) this.getActivity();
+
         Map<LatLng, OverlayImage> latLngMap = new HashMap<>();
         latLngMap.put(new LatLng(36.39064492429601, 127.30882718744387), MarkerIcons.PINK);
         latLngMap.put(new LatLng(36.392283977477604, 127.31413960157613), MarkerIcons.BLUE);
@@ -30,12 +39,6 @@ public class AroundView implements ViewState {
             marker.setIcon(Objects.requireNonNull(latLngMap.get(latLng)));
             markerList.add(marker);
         }
-    }
-
-    @Override
-    public void onOpen(MainActivity mainActivity) {
-        this.locationFragment = new LocationFragment();
-        mainActivity.getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, this.locationFragment).commit();
 
         for(Marker marker : this.markerList) {
             marker.setMap(mainActivity.getNaverMap());
@@ -43,33 +46,18 @@ public class AroundView implements ViewState {
     }
 
     @Override
-    public void onClose(MainActivity mainActivity) {
-        if(this.locationFragment != null) {
-            mainActivity.getSupportFragmentManager().beginTransaction().remove(this.locationFragment).commit();
-            this.locationFragment = null;
-        }
+    public void onDetach() {
+        super.onDetach();
+        this.mainActivity = null;
+
         for(Marker marker : this.markerList) {
             marker.setMap(null);
         }
     }
 
+    @Nullable
     @Override
-    public int getTopBarId() {
-        return R.id.aroundTopBar;
-    }
-
-    @Override
-    public int getIconId() {
-        return R.id.around;
-    }
-
-    @Override
-    public int getReplaceIconId(boolean color) {
-        return color ? R.drawable.ic_around_blue : R.drawable.ic_around_gray;
-    }
-
-    @Override
-    public int getTextId() {
-        return R.id.aroundText;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_location, container, false);
     }
 }
