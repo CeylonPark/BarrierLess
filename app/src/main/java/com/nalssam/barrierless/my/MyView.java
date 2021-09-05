@@ -1,5 +1,6 @@
 package com.nalssam.barrierless.my;
 
+import android.view.View;
 import com.nalssam.barrierless.MainActivity;
 import com.nalssam.barrierless.R;
 import com.nalssam.barrierless.view.ViewState;
@@ -7,12 +8,12 @@ import com.nalssam.barrierless.view.ViewState;
 public class MyView implements ViewState {
     @Override
     public void onOpen(MainActivity mainActivity) {
-
+        mainActivity.findViewById(R.id.myTest).setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onClose(MainActivity mainActivity) {
-
+        mainActivity.findViewById(R.id.myTest).setVisibility(View.GONE);
     }
 
     @Override

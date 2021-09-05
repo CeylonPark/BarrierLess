@@ -43,11 +43,31 @@ public class CommunityView implements ViewState {
         marker.setPosition(new LatLng(36.3906994443793, 127.30733252302068));
         marker.setMap(mainActivity.getNaverMap());
 
+        marker.setOnClickListener(l -> {
+            ImageView imageView = mainActivity.findViewById(R.id.communityTest);
+            if(imageView.getVisibility() == View.GONE) {
+                imageView.setVisibility(View.VISIBLE);
+            } else {
+                imageView.setVisibility(View.GONE);
+            }
+            return true;
+        });
+
         Marker marker2 = new Marker();
         markers.add(marker2);
         marker2.setPosition(new LatLng(36.39064492429601, 127.30882718744387));
         marker2.setIcon(MarkerIcons.PINK);
         marker2.setMap(mainActivity.getNaverMap());
+
+        marker2.setOnClickListener(l -> {
+            ImageView imageView = mainActivity.findViewById(R.id.reviewTest);
+            if(imageView.getVisibility() == View.GONE) {
+                imageView.setVisibility(View.VISIBLE);
+            } else {
+                imageView.setVisibility(View.GONE);
+            }
+            return true;
+        });
     }
 
     @Override
@@ -55,6 +75,11 @@ public class CommunityView implements ViewState {
         //제보 버튼 비활성화
         mainActivity.findViewById(R.id.reportNew).setVisibility(View.GONE);
         mainActivity.findViewById(R.id.reportProblem).setVisibility(View.GONE);
+
+        ImageView imageView = mainActivity.findViewById(R.id.communityTest);
+        if(imageView.getVisibility() == View.VISIBLE) {
+            imageView.setVisibility(View.GONE);
+        }
 
         for(Marker marker : this.markers) {
             marker.setMap(null);

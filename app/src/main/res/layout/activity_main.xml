@@ -68,6 +68,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
+    <!-- 내 정보 실행 테스트 -->
+    <ImageView
+            android:id="@+id/myTest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/my"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"/>
+
     <FrameLayout
             android:id="@+id/footerContainer"
             android:layout_width="0dp"
@@ -75,4 +86,32 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 커뮤니티 실행 테스트 -->
+    <ImageView
+            android:id="@+id/communityTest"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:src="@drawable/img"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@id/footerContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"/>
+    <ImageView
+            android:id="@+id/reviewTest"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/review"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@id/footerContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"/>
+
+    <!-- 네비게이션 실행 테스트 -->
+    <FrameLayout
+            android:id="@+id/testContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
