@@ -62,6 +62,13 @@
             android:visibility="gone" />
 
     <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <FrameLayout
             android:id="@+id/footerContainer"
             android:layout_width="0dp"
             android:layout_height="60dp"
