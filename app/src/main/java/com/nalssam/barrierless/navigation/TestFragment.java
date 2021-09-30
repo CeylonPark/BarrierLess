@@ -1,4 +1,4 @@
-package com.nalssam.barrierless;
+package com.nalssam.barrierless.navigation;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import com.nalssam.barrierless.view.ViewController;
+import com.nalssam.barrierless.BottomNavigationFragment;
+import com.nalssam.barrierless.MainActivity;
+import com.nalssam.barrierless.R;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.PathOverlay;
@@ -22,7 +24,6 @@ import java.util.Arrays;
 
 public class TestFragment extends Fragment {
     private MainActivity mainActivity;
-
     private PathOverlay path;
     private Marker marker;
     private Marker marker2;
@@ -85,7 +86,7 @@ public class TestFragment extends Fragment {
         backBtn.setOnClickListener(l -> {
             FragmentManager fragmentManager = this.mainActivity.getSupportFragmentManager();
             fragmentManager.beginTransaction().remove(this).commit();
-            fragmentManager.beginTransaction().add(R.id.footerContainer, new FooterFragment(new ViewController(mainActivity))).commit();
+            fragmentManager.beginTransaction().add(R.id.footerContainer, new BottomNavigationFragment()).commit();
         });
         return viewGroup;
     }

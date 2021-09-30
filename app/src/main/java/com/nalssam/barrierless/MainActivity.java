@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
-import com.nalssam.barrierless.view.ViewController;
 import com.naver.maps.map.*;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.widget.LocationButtonView;
@@ -13,7 +12,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private NaverMap naverMap;
-    private ViewController viewController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +36,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             zoomControlView.setMap(naverMap);
         });
 
-        this.viewController = new ViewController(this);
-        fm.beginTransaction().add(R.id.footerContainer, new FooterFragment(this.viewController)).commit();
+        // footer fragment
+        fm.beginTransaction().add(R.id.footerContainer, new BottomNavigationFragment()).commit();
     }
 
     @Override
@@ -62,8 +60,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         UiSettings uiSettings = naverMap.getUiSettings();
         uiSettings.setCompassEnabled(false);
         uiSettings.setLogoClickEnabled(false);
-
-        this.viewController.changeView(ViewController.AROUND);
     }
 
     public NaverMap getNaverMap() {
