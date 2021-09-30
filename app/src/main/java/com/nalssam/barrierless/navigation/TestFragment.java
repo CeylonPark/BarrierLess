@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import com.nalssam.barrierless.FooterFragment;
+import com.nalssam.barrierless.BottomNavigationFragment;
 import com.nalssam.barrierless.MainActivity;
 import com.nalssam.barrierless.R;
 import com.naver.maps.geometry.LatLng;
@@ -86,7 +86,7 @@ public class TestFragment extends Fragment {
         backBtn.setOnClickListener(l -> {
             FragmentManager fragmentManager = this.mainActivity.getSupportFragmentManager();
             fragmentManager.beginTransaction().remove(this).commit();
-            fragmentManager.beginTransaction().add(R.id.footerContainer, new FooterFragment()).commit();
+            fragmentManager.beginTransaction().add(R.id.footerContainer, new BottomNavigationFragment()).commit();
         });
         return viewGroup;
     }

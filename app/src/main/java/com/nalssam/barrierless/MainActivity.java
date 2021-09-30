@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         // footer fragment
-        fm.beginTransaction().add(R.id.footerContainer, new FooterFragment()).commit();
+        fm.beginTransaction().add(R.id.footerContainer, new BottomNavigationFragment()).commit();
     }
 
     @Override
