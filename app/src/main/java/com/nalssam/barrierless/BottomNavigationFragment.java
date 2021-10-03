@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import com.nalssam.barrierless.community.CommunityFragment;
-import com.nalssam.barrierless.location.LocationFragment;
+import com.nalssam.barrierless.nearby.NearbyFragment;
 import com.nalssam.barrierless.my.MyFragment;
 import com.nalssam.barrierless.navigation.NavigationFragment;
 
@@ -111,7 +111,7 @@ public class BottomNavigationFragment extends Fragment {
         Fragment fragment;
         switch(newType) {
             case BottomNavigationFragment.NEARBY:
-                fragment = new LocationFragment();
+                fragment = new NearbyFragment();
                 break;
             case BottomNavigationFragment.NAVIGATION:
                 fragment = new NavigationFragment();

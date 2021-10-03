@@ -39,7 +39,7 @@ public class NavigationFragment extends Fragment {
         navigationBtn.setOnClickListener(l -> {
             FragmentManager fragmentManager = this.mainActivity.getSupportFragmentManager();
             fragmentManager.beginTransaction().remove(this).commit();
-            fragmentManager.beginTransaction().remove(Objects.requireNonNull(fragmentManager.findFragmentById(R.id.footerContainer))).commit();
+            fragmentManager.beginTransaction().remove(Objects.requireNonNull(fragmentManager.findFragmentById(R.id.bottomNavigationContainer))).commit();
 
             fragmentManager.beginTransaction().add(R.id.testContainer, new TestFragment()).commit();
         });

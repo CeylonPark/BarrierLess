@@ -1,9 +1,12 @@
 package com.nalssam.barrierless;
 
+import android.graphics.PointF;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
+import com.nalssam.barrierless.api.PlaceSearchService;
+import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.*;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.widget.LocationButtonView;
@@ -35,9 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             LocationButtonView zoomControlView = findViewById(R.id.mapLocationBtn);
             zoomControlView.setMap(naverMap);
         });
-
-        // footer fragment
-        fm.beginTransaction().add(R.id.footerContainer, new BottomNavigationFragment()).commit();
+        //new PlaceSearchService().searchPlace("봉명");
     }
 
     @Override
@@ -58,8 +59,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
 
         UiSettings uiSettings = naverMap.getUiSettings();
-        uiSettings.setCompassEnabled(false);
         uiSettings.setLogoClickEnabled(false);
+        uiSettings.setCompassEnabled(false);
+        uiSettings.setScaleBarEnabled(false);
+
+        // footer fragment
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().add(R.id.bottomNavigationContainer, new BottomNavigationFragment()).commit();
+
+        naverMap.setOnMapClickListener((pointF0, latLng) -> System.out.println(latLng));
     }
 
     public NaverMap getNaverMap() {

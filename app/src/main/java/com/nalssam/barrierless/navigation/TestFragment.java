@@ -86,7 +86,7 @@ public class TestFragment extends Fragment {
         backBtn.setOnClickListener(l -> {
             FragmentManager fragmentManager = this.mainActivity.getSupportFragmentManager();
             fragmentManager.beginTransaction().remove(this).commit();
-            fragmentManager.beginTransaction().add(R.id.footerContainer, new BottomNavigationFragment()).commit();
+            fragmentManager.beginTransaction().add(R.id.bottomNavigationContainer, new BottomNavigationFragment()).commit();
         });
         return viewGroup;
     }
