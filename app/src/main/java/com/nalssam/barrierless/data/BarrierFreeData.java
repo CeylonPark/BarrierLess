@@ -13,7 +13,7 @@ public class BarrierFreeData {
 
     private final Map<LatLng, String> barrierFrees = new HashMap<>();
 
-    public BarrierFreeData() {
+    private BarrierFreeData() {
         // 임시 데이터 TOILET
         this.barrierFrees.put(new LatLng(36.313145920576645, 127.37918978788326), "TOILET");
         this.barrierFrees.put(new LatLng(36.313444112444884, 127.37961359132368), "TOILET");

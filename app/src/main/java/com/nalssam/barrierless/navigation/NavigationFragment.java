@@ -35,15 +35,6 @@ public class NavigationFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_navigation, container, false);
 
-        Button navigationBtn = viewGroup.findViewById(R.id.navigationBtn);
-        navigationBtn.setOnClickListener(l -> {
-            FragmentManager fragmentManager = this.mainActivity.getSupportFragmentManager();
-            fragmentManager.beginTransaction().remove(this).commit();
-            fragmentManager.beginTransaction().remove(Objects.requireNonNull(fragmentManager.findFragmentById(R.id.bottomNavigationContainer))).commit();
-
-            fragmentManager.beginTransaction().add(R.id.testContainer, new TestFragment()).commit();
-        });
-
         return viewGroup;
     }
 }

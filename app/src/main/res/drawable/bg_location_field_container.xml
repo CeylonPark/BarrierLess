@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/shadow_nearby_info"/>
+    <item android:drawable="@drawable/shadow_location_field_container"/>
     <item>
         <shape android:shape="rectangle">
             <size android:height="120dp"/>

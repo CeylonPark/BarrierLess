@@ -43,7 +43,7 @@ public class NearbyBarrierFree {
         marker.setMap(this.map);
 
         marker.setOnClickListener(view -> {
-            this.nearbyFragment.showBarrierFreeInfo(marker);
+            this.nearbyFragment.showBarrierFreeInfo(this.name, marker);
             return true;
         });
 

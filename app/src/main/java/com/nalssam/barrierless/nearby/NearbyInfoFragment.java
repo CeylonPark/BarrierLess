@@ -1,7 +1,6 @@
 package com.nalssam.barrierless.nearby;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +38,7 @@ public class NearbyInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_nearby_info, container, false);
 
-        ((ImageView) viewGroup.findViewById(R.id.barrierFreeImage)).setImageResource(R.drawable.img_slope);
+        ((ImageView) viewGroup.findViewById(R.id.barrierFreeImg)).setImageResource(R.drawable.img_slope);
 
 
         TextView textView = viewGroup.findViewById(R.id.barrierFreeTypeText);

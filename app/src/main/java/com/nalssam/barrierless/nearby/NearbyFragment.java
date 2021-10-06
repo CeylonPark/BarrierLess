@@ -128,10 +128,16 @@ public class NearbyFragment extends Fragment {
         nearbyBarrierFree.setVisible(!visible);
     }
 
-    public void showBarrierFreeInfo(Marker marker) {
+    public void showBarrierFreeInfo(String name, Marker marker) {
         if(this.nearbyInfoFragment != null) {
             this.removeBarrierFreeInfo();
         }
+
+        //테스트용 경사로만
+        if(!name.equals("SLOPE")) {
+            return;
+        }
+
         FragmentManager fm = getChildFragmentManager();
         NearbyInfoFragment nearbyInfoFragment = new NearbyInfoFragment(marker);
         fm.beginTransaction().add(R.id.infoContainer, nearbyInfoFragment).commit();
