@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
 import com.nalssam.barrierless.api.PlaceSearchService;
+import com.nalssam.barrierless.community.CommunityFragment;
+import com.nalssam.barrierless.community.CommunityInfoFragment;
 import com.nalssam.barrierless.nearby.NearbyFragment;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.*;
@@ -71,12 +73,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //네이버 지도 클릭시 인포 프래그먼트 제거
         naverMap.setOnMapClickListener((pointF0, latLng) -> {
-            if(bottomNavigationFragment.getState() != 0) {
-                return;
+            if(bottomNavigationFragment.getState() == 0) {
+                NearbyFragment nearbyFragment = (NearbyFragment) fm.findFragmentById(R.id.fragmentContainer);
+                assert nearbyFragment != null;
+                nearbyFragment.removeBarrierFreeInfo();
+            } else if(bottomNavigationFragment.getState() == 2) {
+                CommunityFragment communityFragment = (CommunityFragment) fm.findFragmentById(R.id.fragmentContainer);
+                assert communityFragment != null;
+                communityFragment.removeReportInfo(true);
             }
-            NearbyFragment nearbyFragment = (NearbyFragment) fm.findFragmentById(R.id.fragmentContainer);
-            assert nearbyFragment != null;
-            nearbyFragment.removeBarrierFreeInfo();
         });
     }
 

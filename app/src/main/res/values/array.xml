@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="report_types">
+        <item>장소</item>
+        <item>구역</item>
+    </string-array>
+</resources>

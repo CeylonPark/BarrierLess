@@ -19,9 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".community.CommunityActivity"
-                  android:theme="@android:style/Theme.Dialog"
-                  />
+        <activity android:name=".community.CommunityReportActivity"/>
 
         <meta-data
                 android:name="com.naver.maps.map.CLIENT_ID"
