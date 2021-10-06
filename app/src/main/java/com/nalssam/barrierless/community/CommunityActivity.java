@@ -16,7 +16,5 @@ public class CommunityActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_report);
 
-        ImageButton cancelBtn = findViewById(R.id.reportCancelBtn);
-        cancelBtn.setOnClickListener(view -> finish());
     }
 }

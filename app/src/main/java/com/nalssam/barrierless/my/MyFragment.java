@@ -35,9 +35,6 @@ public class MyFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_my, container, false);
 
-        this.myTest = viewGroup.findViewById(R.id.myTest);
-        this.myTest.setVisibility(View.VISIBLE);
-
         return viewGroup;
     }
 }

@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import com.nalssam.barrierless.community.CommunityFragment;
 import com.nalssam.barrierless.nearby.NearbyFragment;
@@ -27,24 +26,25 @@ public class BottomNavigationFragment extends Fragment {
     private static final int COMMUNITY = 2;
     private static final int MY = 3;
     private static final int TYPE_SIZE = 4;
-    private FragmentActivity activity;
     private FragmentManager fragmentManager;
     private ImageView[] bar;
     private ImageView[] img;
     private TextView[] text;
     private int state = -1;
 
+    public int getState() {
+        return this.state;
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        this.activity = this.getActivity();
-        this.fragmentManager = this.getParentFragmentManager();
+        this.fragmentManager = requireActivity().getSupportFragmentManager();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        this.activity = null;
         this.fragmentManager = null;
     }
 

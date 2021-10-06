@@ -42,12 +42,7 @@ public class CommunityFragment extends Fragment {
         marker.setMap(mainActivity.getNaverMap());
 
         marker.setOnClickListener(l -> {
-            ImageView imageView = mainActivity.findViewById(R.id.communityTest);
-            if(imageView.getVisibility() == View.GONE) {
-                imageView.setVisibility(View.VISIBLE);
-            } else {
-                imageView.setVisibility(View.GONE);
-            }
+            //
             return true;
         });
 
@@ -58,12 +53,7 @@ public class CommunityFragment extends Fragment {
         marker2.setMap(mainActivity.getNaverMap());
 
         marker2.setOnClickListener(l -> {
-            ImageView imageView = mainActivity.findViewById(R.id.reviewTest);
-            if(imageView.getVisibility() == View.GONE) {
-                imageView.setVisibility(View.VISIBLE);
-            } else {
-                imageView.setVisibility(View.GONE);
-            }
+
             return true;
         });
     }
@@ -85,8 +75,6 @@ public class CommunityFragment extends Fragment {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_community, container, false);
 
         //제보 버튼 활성화
-        viewGroup.findViewById(R.id.reportNew).setOnClickListener(view -> onClickReport());
-        viewGroup.findViewById(R.id.reportProblem).setOnClickListener(view -> onClickReport());
 
         return viewGroup;
     }

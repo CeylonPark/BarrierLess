@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
 import com.nalssam.barrierless.api.PlaceSearchService;
+import com.nalssam.barrierless.nearby.NearbyFragment;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.*;
 import com.naver.maps.map.util.FusedLocationSource;
@@ -65,9 +66,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // footer fragment
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().add(R.id.bottomNavigationContainer, new BottomNavigationFragment()).commit();
+        BottomNavigationFragment bottomNavigationFragment = new BottomNavigationFragment();
+        fm.beginTransaction().add(R.id.bottomNavigationContainer, bottomNavigationFragment).commit();
 
-        naverMap.setOnMapClickListener((pointF0, latLng) -> System.out.println(latLng));
+        //네이버 지도 클릭시 인포 프래그먼트 제거
+        naverMap.setOnMapClickListener((pointF0, latLng) -> {
+            if(bottomNavigationFragment.getState() != 0) {
+                return;
+            }
+            NearbyFragment nearbyFragment = (NearbyFragment) fm.findFragmentById(R.id.fragmentContainer);
+            assert nearbyFragment != null;
+            nearbyFragment.removeBarrierFreeInfo();
+        });
     }
 
     public NaverMap getNaverMap() {
