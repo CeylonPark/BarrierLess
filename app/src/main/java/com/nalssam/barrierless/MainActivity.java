@@ -1,7 +1,9 @@
 package com.nalssam.barrierless;
 
+import android.content.Intent;
 import android.graphics.PointF;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
@@ -41,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             LocationButtonView zoomControlView = findViewById(R.id.mapLocationBtn);
             zoomControlView.setMap(naverMap);
         });
-        //new PlaceSearchService().searchPlace("봉명");
     }
 
     @Override
@@ -87,5 +88,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public NaverMap getNaverMap() {
         return this.naverMap;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        System.out.println("           dfadf  "+resultCode);
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RESULT_OK) {
+            System.out.println(data.getStringExtra("data"));
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.nalssam.barrierless.community;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ public class CommunityReportFragment extends Fragment {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_community_report, container, false);
 
         viewGroup.findViewById(R.id.reportBtn).setOnClickListener(view -> this.onReportClick());
+        viewGroup.findViewById(R.id.complaintBtn).setOnClickListener(view -> this.onComplaintClick());
 
         return viewGroup;
     }
@@ -29,6 +31,15 @@ public class CommunityReportFragment extends Fragment {
         }
         Intent intent = new Intent(mainActivity, CommunityReportActivity.class);
         intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        mainActivity.startActivity(intent);
+    }
+
+    private void onComplaintClick() {
+        MainActivity mainActivity = (MainActivity) getActivity();
+        if(mainActivity == null) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.epeople.go.kr/nep/crtf/userLogn.npaid?returnUrl=%2Fnep%2Fpttn%2FgnrlPttn%2FPttnRqstWrtnInfo.paid"));
         mainActivity.startActivity(intent);
     }
 }

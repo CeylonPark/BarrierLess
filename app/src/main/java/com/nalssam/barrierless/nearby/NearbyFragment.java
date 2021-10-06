@@ -1,6 +1,8 @@
 package com.nalssam.barrierless.nearby;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,12 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.nalssam.barrierless.MainActivity;
 import com.nalssam.barrierless.R;
+import com.nalssam.barrierless.community.CommunityReportActivity;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
 
@@ -66,6 +73,8 @@ public class NearbyFragment extends Fragment {
         viewGroup.findViewById(R.id.slopeBtn).setOnClickListener(view -> switchMarker("SLOPE"));
         viewGroup.findViewById(R.id.elevatorBtn).setOnClickListener(view -> switchMarker("ELEVATOR"));
         viewGroup.findViewById(R.id.swingDoorBtn).setOnClickListener(view -> switchMarker("SWING_DOOR"));
+
+        viewGroup.findViewById(R.id.locationSearchBar).setOnClickListener(view -> onLocationSearchClick());
 
         return viewGroup;
     }
@@ -151,5 +160,11 @@ public class NearbyFragment extends Fragment {
         }
         FragmentManager fm = getChildFragmentManager();
         fm.beginTransaction().remove(this.nearbyInfoFragment).commit();
+    }
+
+    private void onLocationSearchClick() {
+        Intent intent = new Intent(mainActivity, LocationSearchActivity.class);
+        intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        mainActivity.startActivity(intent);
     }
 }

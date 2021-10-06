@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".community.CommunityReportActivity"/>
+        <activity android:name=".nearby.LocationSearchActivity"/>
 
         <meta-data
                 android:name="com.naver.maps.map.CLIENT_ID"

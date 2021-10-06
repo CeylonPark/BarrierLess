@@ -12,11 +12,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp"
-            android:background="@drawable/bg_location_search"
+            android:background="@drawable/bg_location_search_bar"
             android:text="장소, 버스, 지하철, 주소 검색"
             android:fontFamily="@font/nanum_gothic"
             android:textSize="13sp"
-            android:textColor="#b8b8b8"/>
+            android:textColor="#b8b8b8"
+            android:clickable="true"
+            android:focusable="true"/>
 
     <ImageButton
             android:layout_width="wrap_content"

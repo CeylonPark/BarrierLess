@@ -1,27 +1,31 @@
 package com.nalssam.barrierless.api;
 
+import com.google.gson.*;
+import com.nalssam.barrierless.data.LocationSearchData;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 public class PlaceSearchService {
 
     //naver place search api.
-    public void searchPlace(String keyword){
+    public String searchPlace(String keyword){
         try {
             keyword = URLEncoder.encode(keyword, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("encoding fail!",e);
         }
 
-        String apiURL = "https://openapi.naver.com/v1/search/local.json?query="+keyword+"&display=20&start=1&sort=random";    // json 결과
-        //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
+        String apiURL = "https://openapi.naver.com/v1/search/local.json?query="+keyword+"&display=20&start=1&sort=random";
 
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("X-Naver-Client-Id", "wU2fDESa1aZxK5fDP91x");
@@ -30,6 +34,8 @@ public class PlaceSearchService {
 
         System.out.println("네이버에서 받은 결과 = " + responseBody);
         System.out.println("-----------------------------------------");
+
+        return responseBody;
     }
 
     private String get(String apiUrl, Map<String, String> requestHeaders){

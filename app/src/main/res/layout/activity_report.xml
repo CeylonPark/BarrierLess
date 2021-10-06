@@ -64,9 +64,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_report_content"
+                android:inputType="textMultiLine"
+                android:scrollHorizontally="false"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:textSize="10sp"
-                android:textColor="#9f9f9f"
+                android:focusable="true"
+
+                android:textColor="#000"
                 android:hint="새로운 장소에 대해 알려주세요"/>
         <FrameLayout
                 android:layout_width="match_parent"

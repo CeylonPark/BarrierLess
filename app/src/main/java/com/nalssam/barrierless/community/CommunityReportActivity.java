@@ -12,9 +12,9 @@ public class CommunityReportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
+        this.setContentView(R.layout.activity_report);
 
-        findViewById(R.id.backBtn).setOnClickListener(view -> finish());
+        this.findViewById(R.id.backBtn).setOnClickListener(view -> finish());
 
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.report_types, android.R.layout.simple_spinner_item);
@@ -27,6 +27,6 @@ public class CommunityReportActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        overridePendingTransition(0,0);
+        this.overridePendingTransition(0,0);
     }
 }

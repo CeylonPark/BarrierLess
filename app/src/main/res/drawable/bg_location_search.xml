@@ -3,10 +3,8 @@
     <item android:drawable="@drawable/shadow_location_search"/>
     <item>
         <shape android:shape="rectangle">
-            <size android:width="310dp" android:height="40dp"/>
-            <solid android:color="#fff"/>
-            <corners android:radius="5dp"/>
-            <padding android:left="34dp" android:top="13dp"/>
+            <size android:height="40dp"/>
+            <solid android:color="@color/white"/>
         </shape>
     </item>
 </layer-list>
