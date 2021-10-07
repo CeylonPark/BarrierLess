@@ -1,17 +1,15 @@
 package com.nalssam.barrierless;
 
 import android.content.Intent;
-import android.graphics.PointF;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
-import com.nalssam.barrierless.api.PlaceSearchService;
 import com.nalssam.barrierless.community.CommunityFragment;
-import com.nalssam.barrierless.community.CommunityInfoFragment;
+import com.nalssam.barrierless.data.LocationSearchData;
+import com.nalssam.barrierless.navigation.NavigationFragment;
 import com.nalssam.barrierless.nearby.NearbyFragment;
-import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.*;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.widget.LocationButtonView;
@@ -78,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 NearbyFragment nearbyFragment = (NearbyFragment) fm.findFragmentById(R.id.fragmentContainer);
                 assert nearbyFragment != null;
                 nearbyFragment.removeBarrierFreeInfo();
+                nearbyFragment.removeLocationSearchMarker();
             } else if(bottomNavigationFragment.getState() == 2) {
                 CommunityFragment communityFragment = (CommunityFragment) fm.findFragmentById(R.id.fragmentContainer);
                 assert communityFragment != null;
@@ -92,11 +91,31 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        System.out.println("           dfadf  "+resultCode);
-        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK || requestCode < 1 || requestCode > 3) {
+            return;
+        }
 
-        if(requestCode == RESULT_OK) {
-            System.out.println(data.getStringExtra("data"));
+        FragmentManager fm = getSupportFragmentManager();
+        BottomNavigationFragment bnf = (BottomNavigationFragment) fm.findFragmentById(R.id.bottomNavigationContainer);
+        if (bnf == null) {
+            return;
+        }
+
+        LocationSearchData locationData = new LocationSearchData(data.getStringExtra("data"));
+
+        if (requestCode == 1) {
+            if(bnf.getState() == 0) {
+                NearbyFragment nearbyFragment = (NearbyFragment) fm.findFragmentById(R.id.fragmentContainer);
+                assert nearbyFragment != null;
+                nearbyFragment.showLocationSearchMarker(locationData);
+            }
+        } else {
+            if(bnf.getState() != 1) {
+                return;
+            }
+            NavigationFragment navigationFragment = (NavigationFragment) fm.findFragmentById(R.id.fragmentContainer);
+            assert navigationFragment != null;
+            navigationFragment.setLocationPoint(requestCode, locationData);
         }
     }
 }

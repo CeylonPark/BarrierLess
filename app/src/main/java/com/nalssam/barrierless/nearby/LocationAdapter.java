@@ -44,7 +44,7 @@ public class LocationAdapter extends BaseAdapter {
         TextView locationName = view.findViewById(R.id.locationName);
         TextView locationAddress = view.findViewById(R.id.locationAddress);
 
-        locationName.setText(this.data.get(position).getName());
+        locationName.setText(this.data.get(position).getTitle());
         locationAddress.setText(this.data.get(position).getAddress());
 
         return view;

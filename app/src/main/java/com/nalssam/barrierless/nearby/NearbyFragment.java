@@ -1,6 +1,5 @@
 package com.nalssam.barrierless.nearby;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -10,19 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.nalssam.barrierless.MainActivity;
 import com.nalssam.barrierless.R;
-import com.nalssam.barrierless.community.CommunityReportActivity;
+import com.nalssam.barrierless.data.LocationSearchData;
+import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraUpdate;
+import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
+import com.naver.maps.map.util.MarkerIcons;
 
 import java.util.*;
 
@@ -30,6 +29,7 @@ public class NearbyFragment extends Fragment {
     private final Set<NearbyBarrierFree> barrierFrees = new HashSet<>();
     private MainActivity mainActivity;
     private NearbyInfoFragment nearbyInfoFragment;
+    private Marker searchMarker;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -46,6 +46,7 @@ public class NearbyFragment extends Fragment {
             barrierFree.remove();
         }
         this.barrierFrees.clear();
+        this.removeLocationSearchMarker();
     }
 
     @Nullable
@@ -165,6 +166,28 @@ public class NearbyFragment extends Fragment {
     private void onLocationSearchClick() {
         Intent intent = new Intent(mainActivity, LocationSearchActivity.class);
         intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        mainActivity.startActivity(intent);
+        mainActivity.startActivityForResult(intent, 1);
+    }
+
+    public void showLocationSearchMarker(LocationSearchData data) {
+        if(searchMarker != null) {
+            this.removeLocationSearchMarker();
+        }
+        NaverMap naverMap = mainActivity.getNaverMap();
+        LatLng latLng = data.getLatLng();
+        Marker marker = new Marker(latLng);
+        marker.setIcon(MarkerIcons.GRAY);
+        marker.setMap(mainActivity.getNaverMap());
+        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(latLng);
+        naverMap.moveCamera(cameraUpdate);
+        this.searchMarker = marker;
+    }
+
+    public void removeLocationSearchMarker() {
+        if(this.searchMarker == null) {
+            return;
+        }
+        this.searchMarker.setMap(null);
+        this.searchMarker = null;
     }
 }
