@@ -5,20 +5,20 @@ import com.google.gson.JsonParser;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.geometry.Tm128;
 
-public class LocationSearchData {
+public class LocationData {
     private final String title;
     private final String address;
     private final double mapX;
     private final double mapY;
 
-    public LocationSearchData(String title, String address, double mapX, double mapY) {
+    public LocationData(String title, String address, double mapX, double mapY) {
         this.title = title;
         this.address = address;
         this.mapX = mapX;
         this.mapY = mapY;
     }
 
-    public LocationSearchData(JsonObject jsonObject) {
+    public LocationData(JsonObject jsonObject) {
         this.title = jsonObject.get("title").getAsString()
                 .replace("<b>", "").replace("</b>", "");
         this.address = jsonObject.get("address").getAsString();
@@ -26,7 +26,7 @@ public class LocationSearchData {
         this.mapY = jsonObject.get("mapy").getAsDouble();
     }
 
-    public LocationSearchData(String jsonString) {
+    public LocationData(String jsonString) {
         this(JsonParser.parseString(jsonString).getAsJsonObject());
     }
 

@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.nalssam.barrierless.R;
-import com.nalssam.barrierless.data.LocationSearchData;
+import com.nalssam.barrierless.data.LocationData;
 
 import java.util.ArrayList;
 
 public class LocationAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
-    private ArrayList<LocationSearchData> data;
+    private ArrayList<LocationData> data;
 
-    public LocationAdapter(Context context, ArrayList<LocationSearchData> data) {
+    public LocationAdapter(Context context, ArrayList<LocationData> data) {
         this.context = context;
         this.data = data;
         this.layoutInflater = LayoutInflater.from(context);

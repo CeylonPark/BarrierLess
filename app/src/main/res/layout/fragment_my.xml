@@ -219,6 +219,4 @@
             android:layout_marginTop="16dp"
             android:src="@drawable/example"
             android:scaleType="fitXY"/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

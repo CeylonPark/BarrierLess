@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
 import com.nalssam.barrierless.community.CommunityFragment;
-import com.nalssam.barrierless.data.LocationSearchData;
+import com.nalssam.barrierless.data.LocationData;
 import com.nalssam.barrierless.navigation.NavigationFragment;
 import com.nalssam.barrierless.nearby.NearbyFragment;
 import com.naver.maps.map.*;
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             return;
         }
 
-        LocationSearchData locationData = new LocationSearchData(data.getStringExtra("data"));
+        LocationData locationData = new LocationData(data.getStringExtra("data"));
 
         if (requestCode == 1) {
             if(bnf.getState() == 0) {

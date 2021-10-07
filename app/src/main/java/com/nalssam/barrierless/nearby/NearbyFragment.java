@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.nalssam.barrierless.MainActivity;
 import com.nalssam.barrierless.R;
-import com.nalssam.barrierless.data.LocationSearchData;
+import com.nalssam.barrierless.data.LocationData;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.NaverMap;
@@ -169,7 +169,7 @@ public class NearbyFragment extends Fragment {
         mainActivity.startActivityForResult(intent, 1);
     }
 
-    public void showLocationSearchMarker(LocationSearchData data) {
+    public void showLocationSearchMarker(LocationData data) {
         if(searchMarker != null) {
             this.removeLocationSearchMarker();
         }

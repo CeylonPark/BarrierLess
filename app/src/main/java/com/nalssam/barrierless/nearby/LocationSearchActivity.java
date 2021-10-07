@@ -14,7 +14,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.nalssam.barrierless.R;
 import com.nalssam.barrierless.api.PlaceSearchService;
-import com.nalssam.barrierless.data.LocationSearchData;
+import com.nalssam.barrierless.data.LocationData;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class LocationSearchActivity extends AppCompatActivity {
         this.listView = findViewById(R.id.listView);
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent();
-            intent.putExtra("data", ((LocationSearchData) locationAdapter.getItem(position)).toJsonFromString());
+            intent.putExtra("data", ((LocationData) locationAdapter.getItem(position)).toJsonFromString());
             setResult(RESULT_OK, intent);
             finish();});
 
@@ -40,10 +40,10 @@ public class LocationSearchActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 Bundle bundle = msg.getData();
                 String jsonString = bundle.getString("data");
-                ArrayList<LocationSearchData> locationList = new ArrayList<>();
+                ArrayList<LocationData> locationList = new ArrayList<>();
                 JsonArray jsonArray = JsonParser.parseString(jsonString).getAsJsonObject().get("items").getAsJsonArray();
                 for(int i = 0; i < jsonArray.size(); i++) {
-                    locationList.add(new LocationSearchData(jsonArray.get(i).getAsJsonObject()));
+                    locationList.add(new LocationData(jsonArray.get(i).getAsJsonObject()));
                 }
                 locationAdapter = new LocationAdapter(LocationSearchActivity.this, locationList);
                 listView.setAdapter(locationAdapter);
