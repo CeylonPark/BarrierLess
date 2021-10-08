@@ -14,15 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.nalssam.barrierless.MainActivity;
 import com.nalssam.barrierless.R;
 import com.nalssam.barrierless.api.NCPDirection5;
-import com.nalssam.barrierless.api.PlaceSearchService;
 import com.nalssam.barrierless.data.LocationData;
-import com.nalssam.barrierless.data.NavigationData;
-import com.nalssam.barrierless.nearby.LocationAdapter;
 import com.nalssam.barrierless.nearby.LocationSearchActivity;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.overlay.Marker;
@@ -30,7 +26,6 @@ import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.overlay.PathOverlay;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class NavigationFragment extends Fragment {
@@ -96,14 +91,6 @@ public class NavigationFragment extends Fragment {
             this.marker[i] = marker;
         }
 
-        /*
-        Intent intent = new Intent(mainActivity, TestActivity.class);
-        intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        mainActivity.startActivity(intent);
-
-         */
-
-        // 경로선
         Handler handler = new Handler() {
             public void handleMessage(Message msg) {
                 JsonArray jsonArray = JsonParser.parseString(msg.getData().getString("data")).getAsJsonObject()
